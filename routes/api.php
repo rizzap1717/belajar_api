@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\AktorController;
-use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FilmController;
 use App\Models\Genre;
 
