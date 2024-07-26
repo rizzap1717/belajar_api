@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = kategori::latest()->get();
+        $kategori = Kategori::latest()->get();
         $response = [
             'succes' => true,
             'messages' => 'Daftar Kategori',
@@ -21,7 +21,7 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        $kategori = new kategori();
+        $kategori = new Kategori();
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
         return response()->json([
@@ -32,7 +32,7 @@ class KategoriController extends Controller
 
     public function show($id)
     {
-        $kategori = kategori::find($id);
+        $kategori = Kategori::find($id);
         if ($kategori) {
             return response()->json([
                 'success' => true,
@@ -49,7 +49,7 @@ class KategoriController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $kategori = kategori::find($id);
+        $kategori = Kategori::find($id);
         if ($kategori) {
             $kategori->nama_kategori = $request->nama_kategori;
             $kategori->save();
@@ -67,7 +67,7 @@ class KategoriController extends Controller
     }
     public function destroy($id)
     {
-        $kategori = kategori::find($id);
+        $kategori = Kategori::find($id);
         if ($kategori) {
             $kategori->delete();
             return response()->json([

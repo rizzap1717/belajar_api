@@ -13,7 +13,7 @@ class FilmController extends Controller
 {
     public function index()
     {
-        $films = film::with(['genre', 'aktor'])->get();
+        $films = Film::with(['genre', 'aktor'])->get();
         return response()->json([
             'success' => true,
             'message' => 'Data Film',
@@ -44,7 +44,7 @@ class FilmController extends Controller
         try {
             $path = $request->file('foto')->store('public/foto');
             $slug = Str::slug($request->judul);
-            $film = film::create([
+            $film = Film::create([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'foto' => $path,
@@ -73,7 +73,7 @@ class FilmController extends Controller
     public function show($id)
     {
         try {
-            $film = film::with(['genre', 'aktor'])->findOrFail($id);
+            $film = Film::with(['genre', 'aktor'])->findOrFail($id);
             return response()->json([
                 'success' => true,
                 'message' => 'Detail Film',
@@ -90,7 +90,7 @@ class FilmController extends Controller
 
     public function update(Request $request, $id)
     {
-        $film = film::findOrFail($id);
+        $film = Film::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|unique:films,judul,' . $id,
@@ -145,7 +145,7 @@ class FilmController extends Controller
     public function destroy($id)
     {
         try {
-            $film = film::findOrFail($id);
+            $film = Film::findOrFail($id);
 
             // Delete photo
             Storage::delete($film->foto);
